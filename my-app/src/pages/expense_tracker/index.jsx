@@ -3,6 +3,8 @@ import { useState } from "react"
 import "../../App.css";
 import { useAddTransaction } from "../../hooks/useAddTransaction";
 import { useGetTransactions } from "../../hooks/useGetTransactions";
+import { useDeleteTransaction } from "../../hooks/useDeleteTransaction";
+
 
 export const ExpenseTracker = () => {
     const { addTransaction } = useAddTransaction();
@@ -10,6 +12,8 @@ export const ExpenseTracker = () => {
     const [description, setDescription] = useState("");
     const [transactionAmount, setTransactionAmount] = useState(0);
     const [transactionType, setTransactionType] = useState("expense");
+    const { deleteTransaction } = useDeleteTransaction();
+
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -48,6 +52,7 @@ export const ExpenseTracker = () => {
                         <label className="income-radio"htmlFor="income"> Income</label>
 
                         <button className="submit-button"type="submit"> Add Transaction</button>
+                        
                     </form>
                 </div>
             </div>
@@ -56,14 +61,15 @@ export const ExpenseTracker = () => {
             <h3> Transactions</h3>
             <ul>
                 {transactions.map((transaction) => {
-                    const {description, transactionAmount, transactionType} = transaction
+                    const {id, description, transactionAmount, transactionType} = transaction;
                     return (
-                        <li>
+                        <li key={id}>
                             <h4> {description} </h4>
                             <p> 
                                 {" "}
                                 ${transactionAmount} . <label style={{color: transactionType === "expense" ? "red" : "green"}}> {transactionType}</label> 
                             </p>
+                            <button onClick={() => deleteTransaction(id)}>Delete</button>
                         </li>
                     );
                 })}
