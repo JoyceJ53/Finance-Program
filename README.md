@@ -46,5 +46,6 @@ I found these websites useful in developing this software:
 The following items I plan to fix, improve, and/or add to this project in the future:
 
 * [The income total, expenses total, and total finances don't work and need some updating] 
+* [Separating the income and expenses into their own columns (surprisingly complicated)]
 * [The css needs some editing/updating to be more user friendly] 
-* [Adding more login methods on top of signing in with Google] 
+* [Adding more login methods] 
